@@ -1,2 +1,2 @@
-# reason-cache
-The marketplace for second-hand compute
+# ReasonCache
+The CDN for Intelligence
