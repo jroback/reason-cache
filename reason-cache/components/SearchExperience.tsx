@@ -9,6 +9,9 @@ import { mockResults } from "@/data/mockResults";
 
 export function SearchExperience() {
   const [query, setQuery] = useState("");
+  const [selectedResultTitle, setSelectedResultTitle] = useState<string | null>(
+  null
+);
   const filteredResults = mockResults.filter((result) => {
     const searchableText = `${result.title} ${result.description}`.toLowerCase();
     return searchableText.includes(query.toLowerCase());
@@ -28,12 +31,19 @@ export function SearchExperience() {
       <div className="space-y-3 text-left">
         {filteredResults.map((result) => (
           <PromptCard
-            key={result.title}
+            key={result.id}
             match={result.match}
             title={result.title}
             description={result.description}
+            preview={result.preview}
             savings={result.savings}
             age={result.age}
+            isSelected={selectedResultTitle === result.title}
+            onSelect={() =>
+              setSelectedResultTitle((currentTitle) =>
+                currentTitle === result.title ? null : result.title
+              )
+            }
           />
         ))}
 
