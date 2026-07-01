@@ -3,10 +3,13 @@ type PromptCardProps = {
   title: string;
   description: string;
   preview: string;
-  savings: string;
   age: string;
+  timesReused: number;
+  verificationStatus: string;
   isSelected: boolean;
   onSelect: () => void;
+  onReuse: () => void;
+  onGenerateFresh: () => void;
 };
 
 export function PromptCard({
@@ -14,10 +17,13 @@ export function PromptCard({
   title,
   description,
   preview,
-  savings,
   age,
   isSelected,
+  timesReused,
+  verificationStatus,
   onSelect,
+  onReuse,
+  onGenerateFresh,
 }: PromptCardProps) {
   return (
     <article
@@ -30,23 +36,27 @@ export function PromptCard({
     >
       <div className="flex items-start justify-between gap-4">
         <div>
+          <h2 className="text-lg font-semibold text-white">{title}</h2>
+
           <div
-            className={`mb-2 text-sm font-medium ${
+            className={`mt-2 text-sm font-medium ${
               isSelected ? "text-emerald-300" : "text-emerald-400"
             }`}
           >
             {match}% regenerative match
           </div>
 
-          <h2 className="text-lg font-semibold text-white">{title}</h2>
-
-          <p className="mt-2 text-sm leading-6 text-zinc-400">
-            {description}
-          </p>
+          <p className="mt-3 text-sm leading-6 text-zinc-400">{description}</p>
         </div>
 
-        <div className="shrink-0 rounded-full bg-emerald-400/10 px-3 py-1 text-sm font-medium text-emerald-300">
-          Save {savings}
+        <div className="flex shrink-0 flex-col items-end gap-2 text-xs">
+        <span className="rounded-full bg-emerald-400/10 px-3 py-1 font-medium text-emerald-300">
+            ✓ Verified
+          </span>
+
+          <span className="rounded-full border border-white/10 px-3 py-1 text-zinc-400">
+            {timesReused.toLocaleString()} Reuses
+          </span>
         </div>
       </div>
 
@@ -59,11 +69,23 @@ export function PromptCard({
           <p className="mt-2 text-sm leading-6 text-zinc-300">{preview}</p>
 
           <div className="mt-4 flex flex-col gap-2 sm:flex-row">
-            <button className="rounded-full bg-emerald-400 px-4 py-2 text-sm font-medium text-zinc-950">
+            <button
+              onClick={(event) => {
+                event.stopPropagation();
+                onReuse();
+              }}
+              className="rounded-full bg-emerald-400 px-4 py-2 text-sm font-medium text-zinc-950"
+            >
               Reuse answer
             </button>
 
-            <button className="rounded-full border border-white/10 px-4 py-2 text-sm font-medium text-zinc-300">
+            <button
+              onClick={(event) => {
+                event.stopPropagation();
+                onGenerateFresh();
+              }}
+              className="rounded-full border border-white/10 px-4 py-2 text-sm font-medium text-zinc-300"
+            >
               Generate fresh
             </button>
           </div>

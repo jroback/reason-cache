@@ -259,6 +259,149 @@ It's for reusable intelligence.
 
 ---
 
-## Session 3+
+## Session 4 — Trust, Continuation & Product Flow
 
-Continue documenting discoveries here...
+### What We Built
+
+- Refactored the domain model into richer business objects (`trust`, `economics`, `metadata`).
+- Introduced the first trust signals into the UI.
+- Redesigned the information hierarchy of search results.
+- Added expandable previews.
+- Added the first "Continue" interaction using local React state and event handlers.
+- Learned how to stop event propagation (`event.stopPropagation()`).
+
+---
+
+## Biggest Product Discoveries
+
+### Search is navigation, not the destination.
+
+The purpose of search is not to display results.
+
+The purpose of search is to help users choose the best starting point.
+
+The real product begins after a result is selected.
+
+---
+
+### We aren't selling answers.
+
+We are selling momentum.
+
+Users don't want someone else's finished work.
+
+They want the best possible place to begin.
+
+This shifted our language from "Reuse Answer" toward "Continue from Here."
+
+---
+
+### Trust comes before economics.
+
+Users first decide:
+
+> Can I trust this?
+
+Only after that do they ask:
+
+> Is it worth using?
+
+Trust signals (verification, community reuse, creator reputation) should dominate the information hierarchy.
+
+Economic savings are secondary.
+
+---
+
+### Search results are assets, not rows.
+
+Every result represents reusable intelligence.
+
+The interface should feel closer to browsing valuable assets than scrolling through search results.
+
+---
+
+### The product has stages.
+
+The product is no longer:
+
+Search → Results
+
+Instead it is becoming:
+
+Search
+
+↓
+
+Choose
+
+↓
+
+Continue
+
+↓
+
+Conversation
+
+Search is only the launcher.
+
+Conversation is the destination.
+
+---
+
+## Engineering Lessons
+
+### Good software models the business.
+
+Refactoring the SearchResult into:
+
+- trust
+- creator
+- economics
+- metadata
+
+made the code easier to understand because it mirrors how we think about the product.
+
+Good architecture reflects the business, not the UI.
+
+---
+
+### State should describe reality.
+
+Our "Continuing from..." message revealed an important lesson.
+
+The interface should never claim something happened unless the application has actually transitioned into a new state.
+
+UI should communicate truth, not intention.
+
+---
+
+## New Product Principles
+
+- Trust before economics.
+- Search is navigation.
+- Conversation is the product.
+- The UI should reflect the system's current state.
+- Color should communicate state, not decoration.
+- Every interaction should move the user forward.
+
+---
+
+## Questions for Next Sprint
+
+- What does "Continue from Here" actually do?
+- Should continuing become a new conversation?
+- How do we preserve attribution when building on someone else's work?
+- What information should carry forward into the new session?
+- How can continuation feel like standing on someone else's shoulders rather than copying their work?
+
+---
+
+## Ideas Worth Exploring
+
+The "Continue" action may become the defining interaction of the product.
+
+Rather than copying an answer, users should inherit the reasoning, context, and momentum of previous work while remaining free to adapt it to their own situation.
+
+The value of regenerative intelligence may not be the answer itself.
+
+It may be the ability to begin from a proven checkpoint instead of starting from zero.

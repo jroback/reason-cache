@@ -23,25 +23,30 @@ export type SearchResult = {
   concepts: string[];
 
   match: number;
-  qualityScore: number;
-  upvotes: number;
-  previousUses: number;
+
+  trust: {
+    qualityScore: number;
+    upvotes: number;
+    timesReused: number;
+    verificationStatus: VerificationStatus;
+  };
 
   creator: {
     name: string;
     reputationScore: number;
   };
 
-  price: string;
-  savings: string;
+  economics: {
+    price: string;
+    savings: string;
+  };
 
-  sourceModel: SourceModel;
-  outputType: OutputType;
-  verificationStatus: VerificationStatus;
-
-  createdAt: string;
-  age: string;
-
-  country?: string;
-  license?: string;
+  metadata: {
+    sourceModel: SourceModel;
+    outputType: OutputType;
+    createdAt: string;
+    age: string;
+    country?: string;
+    license?: string;
+  };
 };

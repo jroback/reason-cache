@@ -9,6 +9,7 @@ import { mockResults } from "@/data/mockResults";
 
 export function SearchExperience() {
   const [query, setQuery] = useState("");
+  const [actionMessage, setActionMessage] = useState<string | null>(null);
   const [selectedResultTitle, setSelectedResultTitle] = useState<string | null>(
   null
 );
@@ -28,6 +29,12 @@ export function SearchExperience() {
             </p>
         )}
 
+      {actionMessage && (
+        <p className="px-2 pb-3 text-sm text-emerald-300">
+          {actionMessage}
+        </p>
+      )}
+
       <div className="space-y-3 text-left">
         {filteredResults.map((result) => (
           <PromptCard
@@ -36,13 +43,20 @@ export function SearchExperience() {
             title={result.title}
             description={result.description}
             preview={result.preview}
-            savings={result.savings}
-            age={result.age}
+            age={result.metadata.age}
+            timesReused={result.trust.timesReused}
+            verificationStatus={result.trust.verificationStatus}
             isSelected={selectedResultTitle === result.title}
             onSelect={() =>
               setSelectedResultTitle((currentTitle) =>
                 currentTitle === result.title ? null : result.title
               )
+            }
+            onReuse={() =>
+              setActionMessage(`Continuing from "${result.title}"...`)
+            }
+            onGenerateFresh={() =>
+              setActionMessage(`Generating a fresh answer for "${query || result.title}"...`)
             }
           />
         ))}
