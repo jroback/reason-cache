@@ -405,3 +405,10 @@ Rather than copying an answer, users should inherit the reasoning, context, and 
 The value of regenerative intelligence may not be the answer itself.
 
 It may be the ability to begin from a proven checkpoint instead of starting from zero.
+
+## Language Principles
+
+- Prefer human language over system language.
+- Describe progress instead of computation.
+- Users should feel like they're joining ongoing work, not copying someone else's.
+- The product should make people feel ahead, not dependent.
